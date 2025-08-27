@@ -87,7 +87,33 @@ app.post('/cadastro', async function(req, res){
 });
 
 app.get("/home", function (req, res) {
-  res.render("teste.ejs", {});
+  try {
+      const id_usuario = req.session.id_usuario;
+
+      if (!id_usuario) {
+        return res.redirect("/");
+      }
+
+      res.render("teste.ejs", {});
+
+  }catch (error) {
+    console.error("Erro: ", error);
+    res.status(500).send("Ocorreu um erro ao carregar a página.");
+}
+});
+
+app.get("/sair", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Erro ao finalizar a sessão:", err);
+      return res
+        .status(500)
+        .send(
+          `<script>alert("Ocorreu um erro ao sair da conta."); window.history.back();</script>`
+        );
+    }
+    res.redirect("/");
+  });
 });
 
 app.listen("3000", function () {

@@ -1,11 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="geral.css">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <title>Home</title>
 </head>
 <body>
-    <h1>TESTE</h1>
+  <header>
+    <div class="top-header">
+        <div class="topbar-fixed" role="navigation">
+          <div class="topbar-container">
+            <div class="topbar-header">
+              <button type="button" class="topbar-toggle" data-toggle="collapse" data-target=".topbar-collapse">
+                <span class="topbar-bar"></span>
+              </button>
+              <div class="small-logo-container">
+                <a class="small-logo" href="/home">Fidelisys</a>
+              </div>
+            </div>
+            <div class="topbar-collapse collapse">
+              <ul class="topbar-nav">
+                <li><a href="/sair" onclick="return confirm('Tem certeza que deseja sair do sistema?')">Sair</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    <div class="sidebar" id="sidebar">
+      <nav class="navbar">
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a href="/perfil" class="navbar__link"><i data-feather="user"></i><span>Perfil</span></a>        
+          </li>     
+          <li class="navbar__item">
+            <a href="/home" class="navbar__link"><i data-feather="home"></i><span>Home</span></a>
+          </li>
+          <li class="navbar__item">
+            <a href="/configuracoes" class="navbar__link"><i data-feather="settings"></i><span>Configurações</span></a>        
+          </li>
+        </ul>
+      </nav>
+    </div>
+</header>
+<div class="content">
+    <h1>BEM VINDO!</h1>
+</div>
+  <script>
+    feather.replace();
+  </script>
 </body>
 </html>
