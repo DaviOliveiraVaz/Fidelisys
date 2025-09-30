@@ -61,6 +61,44 @@ app.post("/", async (req, res) => {
   }
 });
 
+app.get("/login-cliente", function (req, res) {
+  res.render("login-cliente.ejs", {});
+});
+
+app.post("/login-cliente", async (req, res) => {
+  const { cpf} = req.body;
+
+  try {
+    const cliente = await Cliente.findOne({ cpf }); 
+
+    if (!cliente) {
+      return res.send(
+        `<script>alert("CPF não encontrado. Por favor, cadastre-se no balcão de atendimento."); window.history.back();</script>`
+    );
+  }
+
+    req.session.id_cliente = cliente._id;
+    req.session.cpf_cliente = cliente.cpf;
+    
+    if (req.session.id_usuario) {
+        delete req.session.id_usuario;
+        delete req.session.permissao;
+    }
+
+  return res.redirect("/meus-cartoes");
+
+  } catch (error) {
+    console.error("Erro ao consultar o banco de dados: ", error);
+    return res.status(500).send(
+      `<script>alert("Ocorreu um erro ao consultar o banco de dados."); window.history.back();</script>`
+    );
+  }
+});
+
+app.get("/meus-cartoes", function (req, res) {
+  res.render("meus-cartoes.ejs", {});
+});
+
 app.get("/cadastro", function (req, res) {
   res.render("cadastro.ejs", {});
 });
