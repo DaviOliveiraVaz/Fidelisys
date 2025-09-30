@@ -1,18 +1,13 @@
 const conexao = require("../config/database");
 const { Schema, model } = require("mongoose");
 
-const UsuarioSchema = new Schema({
+const ClienteSchema = new Schema({
   nome:      { type: String, required: true },
   email:     { type: String, required: true },
-  senha:     { type: String, required: true },
   cpf:       { type: String, required: true, unique: true },
   telefone:  { type: String, required: true },
-  permissao: { 
-        type: Number, 
-        required: true, 
-        default: 2,
-        enum: [1, 2] 
-    },
+  endereco:  { type: String, required: true },
+  pontos_acumulados: { type: Number, default: 0 } 
 });
 
-module.exports = model("Usuario", UsuarioSchema, "usuarios");
+module.exports = model("Cliente", ClienteSchema, "clientes");

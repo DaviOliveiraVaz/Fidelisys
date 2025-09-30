@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="geral.css">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <title>Cadastrar Cliente</title>
+</head>
+<body>
+  <header>
+    <div class="top-header">
+        <div class="topbar-fixed" role="navigation">
+          <div class="topbar-container">
+            <div class="topbar-header">
+              <button type="button" class="topbar-toggle" data-toggle="collapse" data-target=".topbar-collapse">
+                <span class="topbar-bar"></span>
+              </button>
+              <div class="small-logo-container">
+                <a class="small-logo" href="/home">Fidelisys</a>
+              </div>
+            </div>
+            <div class="topbar-collapse collapse">
+              <ul class="topbar-nav">
+                <li><a href="/sair" onclick="return confirm('Tem certeza que deseja sair do sistema?')">Sair</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    <div class="sidebar" id="sidebar">
+      <nav class="navbar">
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a href="/home" class="navbar__link"><i data-feather="home"></i><span>Home</span></a>
+          </li>
+          <li class="navbar__item">
+            <a href="/perfil" class="navbar__link"><i data-feather="user"></i><span>Perfil</span></a>        
+          </li>
+          <li class="navbar__item">
+            <a href="/cadastro-cliente" class="navbar__link"><i data-feather="user-plus"></i><span>Cadastrar Cliente</span></a>        
+          </li>
+          <li class="navbar__item">
+            <a href="#" class="navbar__link"><i data-feather="settings"></i><span>Configurações</span></a>        
+          </li>
+        </ul>
+      </nav>
+    </div>
+</header>
+<div class="content">
+    <section class="formulario">
+    <div class="box">
+        <div class="form-box">
+            <h2>Cadastrar Cliente</h2>
+            <form method="post" id="form">
+                <div class="input-group">
+                    <input type="text" name="nome" id="nome" placeholder=" " required>
+                    <label for="nome">Nome Completo</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" name="cpf" id="cpf" placeholder=" " required>
+                    <label for="cpf">CPF</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" name="email" id="email" placeholder=" " required>
+                    <label for="email">E-mail</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="tel" name="telefone" id="telefone" placeholder=" " required>
+                    <label for="telefone">Telefone</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" name="endereco" id="endereco" placeholder=" " required>
+                    <label for="endereco">Endereco</label>
+                </div>
+
+                <div class="input-group button-group entrar">
+                    <input type="submit" value="Cadastrar" id="env">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+</div>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>
