@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificações - FideliSys</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="bg-dark text-white text-center p-3 mb-4">
+    <h1>FideliSys</h1>
+    <p>Seus cartões fidelidade em um só lugar</p>
+</header>
+
+<nav class="container d-flex justify-content-center mb-4">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link <% if(paginaAtiva === 'cartoes') { %>active<% } %>" href="/meus-cartoes">
+                <i class="bi bi-person-vcard-fill"></i> Meus Cartões
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <% if(paginaAtiva === 'promocoes') { %>active<% } %>" href="/promocoes">
+                <i class="bi bi-megaphone-fill"></i> Promoções
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <% if(paginaAtiva === 'notificacoes') { %>active<% } %>" href="/notificacoes">
+                <i class="bi bi-bell-fill"></i> Notificações
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <% if(paginaAtiva === 'perfil') { %>active<% } %>" href="/perfil-cliente">
+                <i class="bi bi-person-circle"></i> Meu Perfil
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<main class="container">
+    <h2 class="mb-4">Minhas Notificações</h2>
+
+    <% if (notificacoes && notificacoes.length > 0) { %>
+    <div class="list-group">
+        <% notificacoes.forEach(notif => { %>
+        <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+            <i class="bi <%= notif.icone %> fs-2"></i>
+            <div class="d-flex gap-2 w-100 justify-content-between">
+                <div>
+                    <p class="mb-0"><%- notif.mensagem %></p>
+                </div>
+                <small class="opacity-50 text-nowrap"><%= notif.tempo %></small>
+            </div>
+        </a>
+        <% }); %>
+    </div>
+    <% } else { %>
+    <div class="alert alert-info text-center">
+        <p class="mb-0">Você não tem nenhuma notificação.</p>
+    </div>
+    <% } %>
+
+</main>
+
+<footer class="text-center text-muted mt-5 mb-3">
+    <p>&copy; <%= new Date().getFullYear() %> FideliSys</p>
+</footer>
+
+</body>
+</html>
+

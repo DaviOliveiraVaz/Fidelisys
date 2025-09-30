@@ -95,10 +95,6 @@ app.post("/login-cliente", async (req, res) => {
   }
 });
 
-app.get("/meus-cartoes", function (req, res) {
-  res.render("meus-cartoes.ejs", {});
-});
-
 app.get("/cadastro", function (req, res) {
   res.render("cadastro.ejs", {});
 });
@@ -318,6 +314,149 @@ app.get("/listar-clientes", async function (req, res) {
     console.error("Erro: ", error);
     res.status(500).send("Ocorreu um erro ao carregar os clientes.");
   }
+});
+
+app.get("/meus-cartoes", (req, res) => {
+    if (!req.session.id_cliente) {
+        return res.redirect("/login-cliente");
+    }
+
+    const dadosDosCartoes = [
+        {
+            restaurante: "Restaurante Sabor Divino",
+            promocao: "Junte 10 selos e ganhe uma sobremesa",
+            registrosFeitos: 7,
+            registrosTotais: 10,
+            premio: "Sobremesa Especial"
+        },
+        {
+            restaurante: "Pizzaria Forno a Lenha",
+            promocao: "Complete o cartão e ganhe uma pizza broto",
+            registrosFeitos: 3,
+            registrosTotais: 8,
+            premio: "Pizza Broto de Calabresa"
+        },
+        {
+            restaurante: "Cafeteria Aconchego",
+            promocao: "A cada 5 cafés, o 6º é por nossa conta!",
+            registrosFeitos: 5,
+            registrosTotais: 5,
+            premio: "Um café expresso grátis"
+        }
+    ];
+
+    res.render("meus-cartoes.ejs", {
+        cards: dadosDosCartoes,
+        paginaAtiva: 'cartoes' // Esta linha corrige o erro
+    });
+});
+
+app.get("/promocoes", (req, res) => {
+    if (!req.session.id_cliente) {
+      return res.redirect("/login-cliente");
+    }
+
+    const dadosDasPromocoes = [
+        {
+            restaurante: "Restaurante Sabor Divino",
+            titulo: "Sobremesa por nossa conta!",
+            regras: "Junte 10 selos de refeições acima de R$30,00.",
+            premio: "Uma sobremesa especial do chef.",
+            validade: "31/12/2024"
+        },
+        {
+            restaurante: "Pizzaria Forno a Lenha",
+            titulo: "Amantes de Pizza",
+            regras: "Na compra de 8 pizzas grandes, a 9ª (broto) é grátis.",
+            premio: "Uma pizza broto de Calabresa ou Mussarela.",
+            validade: "30/11/2024"
+        },
+        {
+            restaurante: "Açai da Praça",
+            titulo: "Fidelidade Gelada",
+            regras: "Acumule 5 selos e ganhe um adicional.",
+            premio: "Um adicional de Leite em Pó ou Paçoca.",
+            validade: "Válido por 90 dias."
+        }
+    ];
+
+    res.render("promocoes.ejs", {
+        promocoes: dadosDasPromocoes,
+        paginaAtiva: 'promocoes'
+    });
+});
+
+app.get("/notificacoes", (req, res) => {
+    if (!req.session.id_cliente) {
+      return res.redirect("/login-cliente");
+    }
+
+    const dadosDasNotificacoes = [
+        {
+            icone: "bi-check-circle-fill text-success",
+            mensagem: "Novo registro no seu cartão da <strong>Pizzaria Forno a Lenha</strong>.",
+            tempo: "5 min atrás"
+        },
+        {
+            icone: "bi-star-fill text-warning",
+            mensagem: "Parabéns! Você completou seu cartão da <strong>Cafeteria Aconchego</strong> e pode resgatar seu prêmio.",
+            tempo: "2 horas atrás"
+        },
+        {
+            icone: "bi-megaphone-fill text-primary",
+            mensagem: "O <strong>Restaurante Sabor Divino</strong> tem uma nova promoção. Confira!",
+            tempo: "Ontem"
+        },
+        {
+            icone: "bi-check-circle-fill text-success",
+            mensagem: "Novo registro no seu cartão do <strong>Restaurante Sabor Divino</strong>.",
+            tempo: "2 dias atrás"
+        }
+    ];
+
+    res.render("notificacoes.ejs", {
+        notificacoes: dadosDasNotificacoes,
+        paginaAtiva: 'notificacoes'
+    });
+});
+
+app.get("/perfil-cliente", (req, res) => {
+    if (!req.session.id_cliente) {
+      return res.redirect("/login-cliente");
+    }
+
+    const dadosDoUsuario = {
+        nome: "Matheus da Silva",
+        cpf: "123.456.789-00",
+        email: "matheus@email.com",
+        telefone: "(11) 98765-4321",
+        fotoUrl: "https://placehold.co/150x150/EFEFEF/333333?text=MS" // Foto de exemplo
+    };
+
+    res.render("perfil-cliente.ejs", {
+        usuario: dadosDoUsuario,
+        paginaAtiva: 'perfil'
+    });
+});
+
+app.get("/sair", (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Erro ao finalizar a sessão:", err);
+            return res.status(500).send(`<script>alert("Ocorreu um erro ao sair da conta."); window.history.back();</script>`);
+        }
+        res.redirect("/");
+    });
+});
+
+app.get("/sair-cliente", (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Erro ao finalizar a sessão:", err);
+            return res.status(500).send(`<script>alert("Ocorreu um erro ao finalizar sua sessão."); window.history.back();</script>`);
+        }
+        res.redirect("/login-cliente");
+    });
 });
 
 app.get("/sair", (req, res) => {

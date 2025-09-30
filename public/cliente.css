@@ -1,0 +1,50 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.loyalty-card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.loyalty-card:hover {
+    transform: translateY(-5px);
+}
+
+.stamps-grid {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.stamp {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 2px dashed #ced4da;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e9ecef;
+}
+
+.stamp.filled {
+    background-color: #198754;
+    border-style: solid;
+    border-color: #157347;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+.promotion-card {
+    border-left: 5px solid #0d6efd;
+}
+
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
