@@ -7,6 +7,7 @@ const ClienteSchema = new Schema({
   cpf:       { type: String, required: true, unique: true },
   telefone:  { type: String, required: true },
   endereco:  { type: String, required: true },
+  nascimento: { type: Date, required: true }, 
   pontos_acumulados: { type: Number, default: 0 } 
 });
 

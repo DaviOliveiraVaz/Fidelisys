@@ -1420,7 +1420,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 0px;
   }
   
   .button-group button {
@@ -1462,13 +1462,4 @@ body {
   .profile-data {
     display: flex;
     justify-content: center;
-  }
-
-  #btn-editar-externo {
-    display: flex;
-    margin-left: 250px;
-  }
-
-  #btn-excluir-externo {
-    margin-left: 360px;
   }

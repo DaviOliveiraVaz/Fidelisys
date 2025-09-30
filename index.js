@@ -231,7 +231,7 @@ app.post('/cadastro-cliente', async function(req, res){
     }
 
   try {
-    const { nome, cpf, email, telefone, endereco } = req.body;
+    const { nome, cpf, email, telefone, endereco, nascimento } = req.body;
     
     const clienteExistente = await Cliente.findOne({ cpf });
     if (clienteExistente) {
@@ -249,7 +249,7 @@ app.post('/cadastro-cliente', async function(req, res){
       email,
       telefone,
       endereco,
-      pontos_acumulados
+      nascimento
     });
 
     await novoCliente.save();
