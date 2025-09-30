@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="geral.css">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <title>Clientes</title>
+</head>
+<body>
+  <header>
+    <div class="top-header">
+        <div class="topbar-fixed" role="navigation">
+          <div class="topbar-container">
+            <div class="topbar-header">
+              <button type="button" class="topbar-toggle" data-toggle="collapse" data-target=".topbar-collapse">
+                <span class="topbar-bar"></span>
+              </button>
+              <div class="small-logo-container">
+                <a class="small-logo" href="/home">Fidelisys</a>
+              </div>
+            </div>
+            <div class="topbar-collapse collapse">
+              <ul class="topbar-nav">
+                <li><a href="/sair" onclick="return confirm('Tem certeza que deseja sair do sistema?')">Sair</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    <div class="sidebar" id="sidebar">
+      <nav class="navbar">
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a href="/home" class="navbar__link"><i data-feather="home"></i><span>Home</span></a>
+          </li>
+          <li class="navbar__item">
+            <a href="/perfil" class="navbar__link"><i data-feather="user"></i><span>Perfil</span></a>        
+          </li>
+          <li class="navbar__item">
+            <a href="/cadastro-cliente" class="navbar__link"><i data-feather="user-plus"></i><span>Cadastrar Cliente</span></a>        
+          </li>
+          <li class="navbar__item">
+            <a href="/listar-clientes" class="navbar__link"><i data-feather="users"></i><span>Clientes</span></a>        
+          </li>
+          <li class="navbar__item">
+            <a href="#" class="navbar__link"><i data-feather="settings"></i><span>Configurações</span></a>        
+          </li>
+        </ul>
+      </nav>
+    </div>
+</header>
+
+<div class="content">
+  <main>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close-button" onclick="closeModal()">&times;</span>
+          <h2>Dados do Cliente</h2>
+          <div id="employee-data"></div>             
+        </div>
+      </div>
+    <div class="content">
+        <h1>CLIENTES</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>Pontos Acumulados</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% Clientes.forEach(function(cliente) { %>
+                      <tr>
+                          <td><%= cliente.nome %></td>
+                          <td><%= cliente.cpf %></td>
+                          <td><%= cliente.telefone %></td>
+                          <td><%= cliente.pontos_acumulados %></td>
+                          <td>
+                              <a href="#" class="btn-edit">
+                                <i data-feather="edit"></i>
+                              </a>
+                              <a href="#" onclick="openModal({
+                                  _id: '<%= cliente._id %>',
+                                  nome: '<%= cliente.nome %>',
+                                  cpf: '<%= cliente.cpf %>',
+                                  email: '<%= cliente.email %>',
+                                  telefone: '<%= cliente.telefone %>',
+                                  endereco: '<%= cliente.endereco %>',
+                                  nascimento: '<%= cliente.nascimento %>',
+                                  pontos_acumulados: Number('<%= cliente.pontos_acumulados %>'),
+                              }); return false;" class="btn-delete">
+                                  <i data-feather="eye"></i>
+                              </a>
+                          </td>
+                      </tr>
+                  <% }) %>
+                  
+            </tbody>
+        </table>
+    </div>
+  </main>
+</div>
+<script>
+    feather.replace();
+  
+    function openModal(cliente) {
+
+      document.getElementById('employee-data').innerHTML = `
+        <p><strong>Nome Completo:</strong> ${cliente.nome}</p>
+        <p><strong>CPF:</strong> ${cliente.cpf}</p>
+        <p><strong>E-mail:</strong> ${cliente.email}</p>
+        <p><strong>Telefone:</strong> ${cliente.telefone}</p>
+        <p><strong>Endereco:</strong> ${cliente.endereco}</p>
+        <p><strong>Nascimento:</strong> ${cliente.nascimento}</p>
+        <p><strong>Pontos:</strong> ${cliente.pontos_acumulados}</p>
+      `;
+  
+      document.getElementById('modal').style.display = 'block';
+    }
+  
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+</script>
+</body>
+</html>

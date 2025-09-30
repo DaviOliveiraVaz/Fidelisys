@@ -265,6 +265,23 @@ app.post('/cadastro-cliente', async function(req, res){
   }
 });
 
+app.get("/listar-clientes", async function (req, res) {
+  try {
+    const id_usuario = req.session.id_usuario;
+
+    if (!id_usuario) {
+      return res.redirect("/");
+    }
+
+    Cliente.find({}).then(function (docs) {
+      res.render("clientes.ejs", { Clientes: docs });
+    });
+  } catch (error) {
+    console.error("Erro: ", error);
+    res.status(500).send("Ocorreu um erro ao carregar os clientes.");
+  }
+});
+
 app.get("/sair", (req, res) => {
   req.session.destroy((err) => {
     if (err) {

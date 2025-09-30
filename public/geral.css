@@ -1262,6 +1262,114 @@ body {
     font-family: "salt", sans-serif;
   }
 
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  table thead {
+    background-color: #455EB5;
+    color: white;
+  }
+
+  table th, table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  table tbody tr:hover {
+    background-color: #e0e0e0;
+  }
+
+  .btn-edit, .btn-delete {
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    background-color: #455EB5;
+    padding-top: 13px;
+    display: inline-block;
+  }
+
+  .btn-edit {
+    margin-right: 2px;
+  }
+
+  .btn-edit:hover, .btn-delete:hover {
+    background-color: #5275e6;
+  }
+
+  @media (max-width: 768px) {
+    .top-header {
+        padding: 0 10px;
+    }
+  }
+
+  @font-face {
+    font-family: salt;
+    src: url(HoneySalt.otf);
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+  }
+  
+  .modal-content {
+    background: #fff;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 2rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    animation: fadeInScale 0.4s ease;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: translateY(-40%) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+    }
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .close-button:hover {
+    color: #e63946;
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+  }
+
   /* 
   -----------------------------------------------------------------------------------
                                    FORMULÁRIO 
